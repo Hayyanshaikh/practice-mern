@@ -1,9 +1,10 @@
-require("dotenv").config();
+﻿require(" dotenv").config();
 const express = require("express");
 const connectDB = require("./config/db");
 const userRoutes = require("./routes/userRoutes");
 const productRoutes = require("./routes/productRoutes");
 const customerRoutes = require("./routes/customerRoutes");
+const orderRoutes = require("./routes/orderRoutes");
 const errorMiddleware = require("./middleware/errorMiddleware");
 
 const app = express();
@@ -15,6 +16,7 @@ connectDB();
 app.use("/api/users", userRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/customers", customerRoutes);
+app.use("/api/orders", orderRoutes);
 
 app.use(errorMiddleware);
 
