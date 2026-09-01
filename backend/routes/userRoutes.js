@@ -1,7 +1,8 @@
 const express = require("express");
+const { register, login, getMe } = require("../controllers/authController");
+const { protect } = require("../middleware/authMiddleware");
 
 const {
-  create,
   findAll,
   findOne,
   update,
@@ -10,10 +11,15 @@ const {
 
 const router = express.Router();
 
-router.post("/", create);
+router.post("/register", register);
+router.post("/login", login);
+router.get("/me", protect, getMe);
+
+// Keep the original collection endpoint as a registration alias.
+router.post("/", register);
 router.get("/", findAll);
 router.get("/:id", findOne);
-router.get("/:id", update);
+router.put("/:id", update);
 router.delete("/:id", remove);
 
 module.exports = router;
