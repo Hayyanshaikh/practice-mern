@@ -32,6 +32,21 @@
 - When a task requires business context, inspect the relevant documentation before making assumptions.
 - Do not repeat information already documented unless explicitly requested.
 
+## Workflow
+
+For every development task:
+
+1. Read `AGENTS.md` first.
+2. Inspect the existing codebase and identify relevant patterns.
+3. Read only the relevant documentation from `docs/`.
+4. Follow existing architecture and conventions.
+5. Implement the requested feature.
+6. Test the implementation.
+7. Create or update relevant documentation when the feature introduces permanent business knowledge.
+8. Keep documentation concise and avoid documenting implementation details.
+9. Do not explain business flows or implementation details unless explicitly asked.
+10. Do not ask for information that can be determined by inspecting the codebase or documentation.
+
 ## Documentation
 
 - Business flows → `docs/flows/`
