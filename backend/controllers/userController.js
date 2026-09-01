@@ -41,10 +41,23 @@ const create = async (req, res, next) => {
 
 const findAll = async (req, res) => {
   try {
-    const users = await User.find();
+    const { limit, offset, searchKey } = req.query;
+
+    const users = await User.find({
+      name: {
+        $regex: searchKey || "",
+        $options: "i",
+      },
+    })
+      .limit(parseInt(limit) || 10)
+      .skip(parseInt(offset) || 0);
+    const totalCount = await User.countDocuments();
+    const count = users.length;
 
     res.status(200).json({
       data: users,
+      maxTotal: totalCount,
+      total: count,
       message: "All users fetch Successfully.",
     });
   } catch (error) {
